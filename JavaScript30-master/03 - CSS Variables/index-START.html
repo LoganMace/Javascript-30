@@ -18,7 +18,7 @@
     <input id="base" type="color" name="base" value="#1da7a7">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2854&q=80">
 
   <style>
 
@@ -31,7 +31,13 @@
     img {
       padding: var(--spacing);
       background: var(--base);
-      filter: var(--blur);
+      filter: blur(var(--blur));
+      width: 90vw;
+      height: auto;
+    }
+
+    .hl {
+      color: var(--base);
     }
 
     /*
@@ -57,7 +63,15 @@
   </style>
 
   <script>
-    
+
+    const inputs = document.querySelectorAll('.controls input');
+    console.log('inputs: ', inputs);
+    function handleUpdate(){
+      console.log(this.value);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate))
+
   </script>
 
 </body>
