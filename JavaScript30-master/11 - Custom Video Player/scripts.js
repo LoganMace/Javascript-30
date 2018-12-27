@@ -8,8 +8,6 @@ const toggle = player.querySelector('.toggle');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 
-console.dir(video);
-
 // BUILD FUNCTIONS
 
 function togglePlay() {
@@ -39,8 +37,9 @@ function handleProgress() {
 };
 
 function changeTime(e) {
-  let time = (e.offsetX / progress.offsetWidth);
-  video.currentTime = video.duration * time;
+  console.log('moving');
+  let time = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = time;
 };
 
 // HOOK UP EVENT LISTENERS
@@ -49,8 +48,17 @@ video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
 video.addEventListener('timeupdate', handleProgress);
+
 toggle.addEventListener('click', togglePlay);
+
 skipButtons.forEach(btn => btn.addEventListener('click', skip));
+
 ranges.forEach(rng => rng.addEventListener('change', handleRangeUpdate));
 ranges.forEach(rng => rng.addEventListener('mousemove', handleRangeUpdate));
+
+let mousedown = false;
 progress.addEventListener('click', changeTime);
+progress.addEventListener('mousedown', () => mousedown = true);
+progress.addEventListener('mouseup', () => mousedown = false);
+progress.addEventListener('mouseout', () => mousedown = false);
+progress.addEventListener('mousemove', (e) => mousedown && changeTime(e));
