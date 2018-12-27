@@ -7,6 +7,26 @@
 </head>
 <body>
 <script>
+
+  let entered = [];
+  const secretCode = 'yagelove';
+
+  window.addEventListener('keyup', (e) => {
+    entered.push(e.key);
+    // console.log(-secretCode.length-1, entered.length - secretCode.length);
+    // console.log('entered-before: ', entered);
+    // entered.splice(-secretCode.length-1, entered.length - secretCode.length);
+    if(entered.length > secretCode.length) {
+      entered.splice(0,1);
+    }
+    console.log('entered-after: ', entered.join(''));
+    if(entered.join('').includes(secretCode)) {
+      console.log('IT WORKED!!!');
+      cornify_add();
+    };
+  });
+
+
 </script>
 </body>
 </html>
