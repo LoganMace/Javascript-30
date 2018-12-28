@@ -90,7 +90,29 @@
     // console.log('cap3: ', cap3);
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const wes = {
+      name: 'Wes',
+      age: 100,
+      social: {
+        twitter: '@wesbos',
+        facebook: 'wesbos.developer'
+      }
+    };
+    // console.log('wes: ', wes);
     
+    const dev = {...wes};
+    dev.name = 'wesley';
+    dev.social.twitter = '@changed';
+    // console.log('dev: ', dev);
+    // console.log('wes: ', wes);
+
+
+    // makes a full copy by converting to a string and then parsing back to an object.
+    // vvvvvvvvv
+    const dev2 = JSON.parse(JSON.stringify(wes));
+    dev2.social.twitter = '@singleChange';
+    // console.log('dev2: ', dev2);
+    // console.log('wes: ', wes);
 
   </script>
 
