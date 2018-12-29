@@ -182,6 +182,18 @@
     </li>
   </ul>
 <script>
+
+  const timeNodes = [...document.querySelectorAll('[data-time]')];
+  // console.log('timeNodes: ', timeNodes);
+  const seconds = timeNodes
+    .map(node => node.dataset.time)
+    .map(timeCode => {
+      const [mins, secs] = timeCode.split(':');
+      return +(mins * 60) + +secs;
+    })
+    .reduce((total, curr) => total + curr);
+  console.log('seconds: ', seconds);
+
 </script>
 </body>
 </html>
