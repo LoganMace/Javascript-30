@@ -55,7 +55,17 @@
     }).join('');
   };
 
+  function toggleChecked(e) {
+    if(!e.target.matches('input')) return;
+    console.log('e: ', e.target);
+    const el = e.target;
+    items[el.dataset.index].checked = !items[el.dataset.index].checked;
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList);
+  };
+
   addItems.addEventListener('submit', addItem);
+  itemsList.addEventListener('click', toggleChecked);
 
   populateList(items, itemsList);
 
